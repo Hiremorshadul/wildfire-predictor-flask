@@ -1,0 +1,100 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Algerian Wildfire Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="{{ url_for('index') }}">
+        <div class="logo"></div>
+        <h1>Algerian Wildfire Predictor</h1>
+      </a>
+      <nav class="navlinks">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('predict_datapoint') }}">Predict</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#how">How it works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="badge">ML + Meteorology • Ridge Regression • StandardScaler</div>
+        <h2 class="title">Predict Forest Fire Risk for Algerian Regions</h2>
+        <p class="subtitle">
+          A simple, fast Flask app powered by a trained Ridge Regression model.
+          Enter meteorological features to estimate fire likelihood for Béjaïa and Sidi Bel‑Abbès (2012 season).
+        </p>
+        <div class="actions">
+          <a class="cta" href="{{ url_for('predict_datapoint') }}">Start Predicting</a>
+          <a class="btn" href="#dataset">Learn More</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="section-title">Quick Facts</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="num">244</div><div class="lbl">Instances</div></div>
+          <div class="kpi"><div class="num">2</div><div class="lbl">Regions</div></div>
+          <div class="kpi"><div class="num">2012</div><div class="lbl">Jun–Sep</div></div>
+          <div class="kpi"><div class="num">11 + 1</div><div class="lbl">Features + Target</div></div>
+        </div>
+        <p class="note">Classes: Fire (138), Not Fire (106)</p>
+      </div>
+    </section>
+
+    <section id="how" class="grid-3">
+      <div class="card">
+        <h3 class="section-title">1. Input</h3>
+        <p class="list">Provide Temperature, RH, Wind, Rain and indices like FFMC, DMC, ISI—plus numeric encodings for Classes & Region.</p>
+      </div>
+      <div class="card">
+        <h3 class="section-title">2. Preprocess</h3>
+        <p class="list">Values are standardized with a fitted <strong>StandardScaler</strong> to match model training distribution.</p>
+      </div>
+      <div class="card">
+        <h3 class="section-title">3. Predict</h3>
+        <p class="list">A trained <strong>Ridge Regression</strong> model outputs the prediction, rendered instantly.</p>
+      </div>
+    </section>
+
+    <section id="dataset" class="grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3 class="section-title">About the Dataset</h3>
+        <ul class="list">
+          <li>Regions: Béjaïa (NE), Sidi Bel‑Abbès (NW)</li>
+          <li>Period: June–September 2012</li>
+          <li>244 instances (122 per region)</li>
+          <li>11 attributes + 1 target (Fire/Not Fire)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="section-title">Tips</h3>
+        <ul class="list">
+          <li>Use realistic ranges (e.g., Temp 15–45°C, RH 10–100%).</li>
+          <li>Keep decimals with a dot (e.g., <code>0.0</code> for Rain).</li>
+          <li>Classes & Region should match the numeric encoding from training.</li>
+        </ul>
+        <div class="actions" style="margin-top:10px">
+          <a class="btn btn-primary" href="{{ url_for('predict_datapoint') }}">Try the Predictor</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>
+  © {{ 2025 }} Algerian Wildfire Predictor • Built with Flask, scikit-learn 
+  By <a href="https://www.morshadul.com" target="_blank" rel="noopener noreferrer">MORSHADUL</a>
+    </div>
+    </div>
+  </footer>
+</body>
+</html>

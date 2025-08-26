@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Predict • Algerian Wildfire Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="{{ url_for('index') }}">
+        <div class="logo"></div>
+        <h1>Algerian Wildfire Predictor</h1>
+      </a>
+      <nav class="navlinks">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('predict_datapoint') }}">Predict</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">Enter Data for Fire Prediction</h2>
+
+    <div class="split">
+      <form class="card form" method="POST" action="{{ url_for('predict_datapoint') }}">
+        <div class="grid-2">
+          <div class="input">
+            <label for="Temperature">Temperature (°C)</label>
+            <input id="Temperature" name="Temperature" type="number" step="0.1" placeholder="e.g., 30" required>
+          </div>
+          <div class="input">
+            <label for="RH">Relative Humidity (RH, %)</label>
+            <input id="RH" name="RH" type="number" step="0.1" placeholder="e.g., 45" required>
+          </div>
+          <div class="input">
+            <label for="Ws">Wind Speed (Ws)</label>
+            <input id="Ws" name="Ws" type="number" step="0.1" placeholder="e.g., 15" required>
+          </div>
+          <div class="input">
+            <label for="Rain">Rainfall (mm)</label>
+            <input id="Rain" name="Rain" type="number" step="0.1" placeholder="e.g., 0.0" required>
+          </div>
+          <div class="input">
+            <label for="FFMC">FFMC</label>
+            <input id="FFMC" name="FFMC" type="number" step="0.1" placeholder="e.g., 85.2" required>
+          </div>
+          <div class="input">
+            <label for="DMC">DMC</label>
+            <input id="DMC" name="DMC" type="number" step="0.1" placeholder="e.g., 15.3" required>
+          </div>
+          <div class="input">
+            <label for="ISI">ISI</label>
+            <input id="ISI" name="ISI" type="number" step="0.1" placeholder="e.g., 6.2" required>
+          </div>
+          <div class="input">
+            <label for="Classes">Classes (encoded)</label>
+            <input id="Classes" name="Classes" type="number" step="1" placeholder="e.g., 1 for Fire, 0 for Not Fire" required>
+          </div>
+          <div class="input">
+            <label for="Region">Region (encoded)</label>
+            <input id="Region" name="Region" type="number" step="1" placeholder="e.g., 0=Béjaïa, 1=Sidi Bel-Abbès (if that matches training)" required>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Predict</button>
+          <a class="btn" href="{{ url_for('index') }}">Back</a>
+        </div>
+
+        {% if results is defined %}
+        <div class="callout" style="margin-top:10px">
+          <strong>Prediction:</strong>
+          <span class="{{ 'success' if results >= 0.5 else 'warn' }}">
+            {{ results }}
+          </span>
+        </div>
+        {% endif %}
+        <p class="note">Note: Output reflects the Ridge model's prediction on standardized inputs.</p>
+      </form>
+
+      <div class="card">
+        <h3 class="section-title">Guidance</h3>
+        <ul class="list">
+          <li>Ensure numeric inputs use a dot for decimals (e.g., 0.0).</li>
+          <li>Stay within realistic ranges to avoid out-of-distribution results.</li>
+          <li>Encodings (<em>Classes</em>, <em>Region</em>) must match your training pipeline.</li>
+        </ul>
+        <div class="callout" style="margin-top:10px">
+          For best results, mirror the preprocessing used during training.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>
+  © {{ 2025 }} Algerian Wildfire Predictor • Built with Flask, scikit-learn 
+  By <a href="https://www.morshadul.com" target="_blank" rel="noopener noreferrer">MORSHADUL</a>
+    </div>
+    </div>
+  </footer>
+</body>
+</html>
