@@ -15,6 +15,14 @@ The project covers everything from **data preprocessing, model training, and eva
 
 ---
 
+## 🖼️ Application Screenshots
+### Landing Page
+![Landing Page](screenshots/Landing_Page.png)
+
+### Prediction Page
+![Prediction Page](screenshots/Prediction_Page.png)
+
+
 ## 📂 Project Structure
 
 ├─ application.py # Flask application entry point
