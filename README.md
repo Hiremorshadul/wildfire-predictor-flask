@@ -41,5 +41,4 @@ The project covers everything from **data preprocessing, model training, and eva
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/Hiremorshadul/wildfire-predictor-flask.git
