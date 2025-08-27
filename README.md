@@ -3,6 +3,7 @@
 This repository contains an **end-to-end Machine Learning project** that predicts wildfire risk in Algeria using the **Algerian Forest Fires dataset** (June–Sept 2012).  
 The project covers everything from **data preprocessing, model training, and evaluation**, to deploying a **Flask web application** for user interaction.
 
+Successfully deployed >> https://wildfire-predictor-flask.onrender.com/ 
 ---
 
 ## ✨ Features
@@ -14,6 +15,8 @@ The project covers everything from **data preprocessing, model training, and eva
 - Fully documented **dataset attributes** for clarity
 
 ---
+
+Successfully deployed >> https://wildfire-predictor-flask.onrender.com/ 
 
 ## 🖼️ Application Screenshots
 ### Landing Page
